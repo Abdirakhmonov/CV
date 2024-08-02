@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lesson_89/services/cv_service.dart';
 import 'package:lesson_89/ui/widgets/about_me.dart';
 import 'package:lesson_89/ui/widgets/academic_widget.dart';
+import 'package:lesson_89/ui/widgets/contact_widget.dart';
 import 'package:lesson_89/ui/widgets/project_url.dart';
+import 'package:lesson_89/ui/widgets/skills_widget.dart';
 import 'package:lesson_89/ui/widgets/summary_widget.dart';
 
 import '../widgets/button_controller.dart';
@@ -18,11 +21,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController _tabController;
   int _currentPageIndex = 0;
 
+  final CvService cvService = CvService();
+
   @override
   void initState() {
     super.initState();
     _pageViewController = PageController();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 6, vsync: this);
   }
 
   @override
@@ -55,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cvService.downloadCv("https://www.myperfectresume.com/resume/templates/pdf");
+            },
             icon: const Icon(Icons.picture_as_pdf),
           ),
         ],
@@ -71,6 +78,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               SummaryWidget(),
               AcademicWidget(),
               ProjectUrl(),
+              ContactWidget(),
+              SkillsWidget()
             ],
           ),
           ButtonController(

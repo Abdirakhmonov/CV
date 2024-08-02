@@ -46,7 +46,7 @@ class ButtonController extends StatelessWidget {
             splashRadius: 16.0,
             padding: EdgeInsets.zero,
             onPressed: () {
-              if (currentPageIndex == 3) {
+              if (currentPageIndex == 5) {
                 return;
               }
               onUpdateCurrentPageIndex(currentPageIndex + 1);
